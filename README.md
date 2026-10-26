@@ -69,7 +69,6 @@ terraform apply
 
 Review the plan before applying. `terraform apply` creates billable Azure resources. Terraform uses local state by default, so keep `terraform.tfstate`, `terraform.tfstate.backup`, and any saved plans private and out of Git.
 
-The GitHub Actions workflow runs formatting and validation for pull requests targeting `main` and when manually dispatched. It does not deploy infrastructure.
 
 ## Network access and finding the server address
 
