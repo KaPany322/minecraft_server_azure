@@ -101,11 +101,10 @@ Use the resulting address to SSH as `adminuser` (or your configured `admin_usern
 ### If you added the voicechat after installation
 
 If you added the voicechat after installation and need to open that UDP port, you can run this command:
-
 ```sh
 az network nsg rule create \
   --resource-group "minecraft_server" \
-  --subscription "<subscription-id>" \
+  --subscription "<subscription-id>"  # enter here your Azure subscription id \
   --nsg-name "defaultnsg" \
   --name "allow-minecraft-voicechat" \
   --priority 120 \
@@ -117,6 +116,7 @@ az network nsg rule create \
   --source-address-prefixes "*" \
   --destination-address-prefixes "*"
 ```
+It will create the new UDP rule on port 24454 for voice-chat
 
 ## Destroy the infrastructure
 
