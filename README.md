@@ -1,4 +1,4 @@
-# Minecraft server infrastructure on Azure
+# Creating Minecraft server infrastructure on Azure
 
 This repository uses Terraform to create Azure infrastructure intended to host a Minecraft server. It creates a resource group, virtual network and subnet, network security group, static public IP, Linux virtual machine, storage account and private blob container. The VM has a system-assigned managed identity with **Storage Blob Data Contributor** access to the container.
 
@@ -97,6 +97,26 @@ az network public-ip show \
 ```
 
 Use the resulting address to SSH as `adminuser` (or your configured `admin_username`). Once you install and start a Minecraft server, players can connect using the public IP or DNS name. The server software must listen on the allowed ports.
+
+### If you added the voicechat after installation
+
+If you added the voicechat after installation and need to open that UDP port, you can run this command:
+
+```sh
+az network nsg rule create \
+  --resource-group "minecraft_server" \
+  --subscription "<subscription-id>" \
+  --nsg-name "defaultnsg" \
+  --name "allow-minecraft-voicechat" \
+  --priority 120 \
+  --direction Inbound \
+  --access Allow \
+  --protocol Udp \
+  --source-port-ranges "*" \
+  --destination-port-ranges "24454" \
+  --source-address-prefixes "*" \
+  --destination-address-prefixes "*"
+```
 
 ## Destroy the infrastructure
 
