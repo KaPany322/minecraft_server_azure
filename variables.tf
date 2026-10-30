@@ -104,7 +104,7 @@ variable "admin_username" {
 variable "is_voicechat" {
   type        = bool
   description = "Will be voice chat on minecraft server?"
-  default     = true
+  default     = false
 }
 
 variable "azurerm_storage_account_name" {

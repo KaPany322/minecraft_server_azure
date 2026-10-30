@@ -4,6 +4,8 @@ This repository uses Terraform to create Azure infrastructure intended to host a
 
 > **What this does not do:** the current Terraform configuration creates the Ubuntu VM but does not install, configure, or start Minecraft. A server installation and its world data setup are still needed before players can connect. The storage container is created and permissioned, but the configuration does not mount it or configure backups.
 
+> **To configure server go to my next project** https://github.com/KaPany322/minecraft_server_configure
+
 ## Requirements
 
 - An Azure subscription where you can create resource groups, networking, virtual machines, storage accounts, and role assignments.
@@ -49,7 +51,7 @@ Replace both example values. `admin_cidr` should be your current public IPv4 add
 | `vm_size` | No | `Standard_F4als_v7` | Azure VM size; availability depends on the selected region and subscription. |
 | `admin_username` | No | `adminuser` | VM administrator account. |
 | `dns_label` | No | `minecrafttaverna` | Label for the public IP DNS name; it must be available in Azure. |
-| `is_voicechat` | No | `true` | When true, allow inbound UDP port 24454 for voice chat. |
+| `is_voicechat` | No | `false` | When true, allow inbound UDP port 24454 for voice chat. |
 | `azurerm_storage_account_name` | No | `storageaccminecraft` | Storage account name; Azure requires a globally unique valid name. |
 | `azurerm_storage_container_name` | No | `minecraft-artifacts` | Private blob container name. |
 
@@ -127,3 +129,5 @@ terraform destroy
 ```
 
 Review the destroy plan before confirming. This removes the VM, network, storage account, and container managed by this configuration, including data stored in that container.
+
+> **To configure server go to my next project** https://github.com/KaPany322/minecraft_server_configure
